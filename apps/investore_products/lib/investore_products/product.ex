@@ -16,21 +16,24 @@ defmodule InvestoreProducts.Product do
     timestamps(type: :utc_datetime)
   end
 
-  def changeset(entity = %Entity{}, params \\ %{}) do
-    entity
-    |> cast([:name, :image_url, :description], params)
-    |> validate_required([:name])
-    |> validate_name()
-    |> validate_description()
-  end
+  def changeset(entity = %Entity{}, params \\ %{}),
+    do:
+      entity
+      |> cast(params, [:name, :image_url, :description])
+      |> validate_required([:name])
+      |> validate_name()
+      |> validate_description()
 
   defp validate_name(changeset),
     do:
       changeset
       |> validate_length(:name, min: 1, max: 150)
+      |> unique_constraint(:name)
 
   defp validate_description(changeset),
     do:
       changeset
       |> validate_length(:description, max: 250)
+
+  defdelegate add_changeset(entity, params), to: Entity, as: :changeset
 end
