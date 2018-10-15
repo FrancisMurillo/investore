@@ -19,7 +19,7 @@ defmodule InvestoreProducts.Product do
   def changeset(entity = %Entity{}, params \\ %{}),
     do:
       entity
-      |> cast(params, [:name, :image_url, :description])
+      |> cast(params, [:uuid, :name, :image_url, :description])
       |> validate_required([:name])
       |> validate_name()
       |> validate_description()

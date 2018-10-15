@@ -10,7 +10,9 @@ defmodule InvestoreProducts.MixProject do
       deps_path: "../../deps",
       lockfile: "../../mix.lock",
       elixir: "~> 1.7",
+      elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
+      aliases: aliases(),
       deps: deps()
     ]
   end
@@ -22,10 +24,21 @@ defmodule InvestoreProducts.MixProject do
     ]
   end
 
+  defp elixirc_paths(:test), do: ["lib", "test"]
+  defp elixirc_paths(_), do: ["lib"]
+
   defp deps do
     [
+      {:ex_machina, "~> 2.2.0"},
+      {:faker, "~> 0.11.0", only: :test},
       {:postgrex, ">= 0.0.0"},
       {:ecto, "~> 2.2.11"}
+    ]
+  end
+
+  defp aliases() do
+    [
+      test: ["ecto.create --quiet", "ecto.migrate", "test --no-start"]
     ]
   end
 end

@@ -7,7 +7,9 @@ defmodule InvestoreProducts do
   alias Context.{Product, Repo}
 
   def add_product(params) do
-    %Product{uuid: UUID.generate()}
+    uuid = Ecto.UUID.generate()
+
+    %Product{uuid: uuid}
     |> Product.add_changeset(params)
     |> Repo.insert()
   end
