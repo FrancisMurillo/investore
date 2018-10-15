@@ -6,10 +6,12 @@ defmodule InvestoreProducts.Repo.Migrations.CreateProducts do
   def change do
     create table(:products, primary_key: false) do
       add(:uuid, :uuid, primary_key: true)
-      add(:name, :citext, null: false, size: 150)
-      add(:image_url, :text, null: true)
-      add(:description, null: true, size: 250)
+      add(:name, :citext, null: false)
+      add(:image_url, :string, null: true)
+      add(:description, :string, null: true, size: 250)
       timestamps()
     end
+
+    create(unique_index(:products, [:name]))
   end
 end
