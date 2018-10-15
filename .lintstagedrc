@@ -1,0 +1,16 @@
+{
+  "linters": {
+      "*.{ex,exs}": [
+        "mix format",
+        "git add"
+      ],
+      "*.json": [
+        "npm run jsonlint -- -i",
+        "git add"
+      ],
+    "*rc": [
+      "npm run jsonlint -- -i",
+      "git add"
+    ]
+  }
+}

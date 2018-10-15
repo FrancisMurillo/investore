@@ -1,0 +1,17 @@
+{
+  "linters": {
+    "*.json": [
+      "npm run jsonlint -- -i",
+      "git add"
+    ],
+    "*.js": [
+      "npm run import-sort -- --write",
+      "npm run prettier -- --write",
+      "git add"
+    ],
+    "*rc": [
+      "npm run jsonlint -- -i",
+      "git add"
+    ]
+  }
+}

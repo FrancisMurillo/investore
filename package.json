@@ -19,8 +19,8 @@
       "enabled": true,
       "allow-untracked-files": true,
       "pre-commit": [
-        "mix format",
-        "npm run lint-staged"
+          "mix format",
+        "cd apps/investore_web/assets && npm run precommit"
       ],
       "post-commit": [],
       "pre-push": [
@@ -29,18 +29,6 @@
       ],
       "post-checkout": [],
       "post-merge": []
-    }
-  },
-  "lint-staged": {
-    "linters": {
-      "*.{ex,exs}": [
-        "mix format",
-        "git add"
-      ],
-      "*.json": [
-        "jsonlint -i",
-        "git add"
-      ]
     }
   },
   "release": {
