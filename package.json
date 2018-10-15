@@ -1,0 +1,49 @@
+{
+  "name": "investore",
+  "version": "1.0.0",
+  "description": "A research project",
+  "scripts": {
+    "lint-staged": "lint-staged",
+    "jsonlint": "jsonlint",
+    "test": "mix test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jsonlint": "^1.6.3",
+    "lint-staged": "^7.2.2",
+    "pre-git": "^3.17.1"
+  },
+  "config": {
+    "pre-git": {
+      "enabled": true,
+      "allow-untracked-files": true,
+      "pre-commit": [
+        "mix format",
+        "npm run lint-staged"
+      ],
+      "post-commit": [],
+      "pre-push": [
+        "mix credo --strict",
+        "mix test"
+      ],
+      "post-checkout": [],
+      "post-merge": []
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{ex,exs}": [
+        "mix format",
+        "git add"
+      ],
+      "*.json": [
+        "jsonlint -i",
+        "git add"
+      ]
+    }
+  },
+  "release": {
+    "analyzeCommits": "simple-commit-message"
+  }
+}
