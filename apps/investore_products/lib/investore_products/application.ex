@@ -5,7 +5,7 @@ defmodule InvestoreProducts.Application do
 
   def start(_type, _args) do
     children = [
-      # {InvenstoreProducts.Worker, arg},
+      {InvestoreProducts.Repo, []}
     ]
 
     opts = [strategy: :one_for_one, name: InvestoreProducts.Supervisor]
