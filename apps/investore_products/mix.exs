@@ -23,6 +23,9 @@ defmodule InvestoreProducts.MixProject do
   end
 
   defp deps do
-    []
+    [
+      {:postgrex, ">= 0.0.0"},
+      {:ecto, "~> 2.2.11"}
+    ]
   end
 end
