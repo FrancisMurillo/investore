@@ -1,4 +1,6 @@
 defmodule InvestoreWeb.Router do
+  @moduledoc false
+
   use InvestoreWeb.Web, :router
 
   pipeline :browser do
@@ -14,14 +16,16 @@ defmodule InvestoreWeb.Router do
   end
 
   scope "/", InvestoreWeb do
-    # Use the default browser stack
     pipe_through(:browser)
 
     get("/", PageController, :index)
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", InvestoreWeb do
-  #   pipe_through :api
-  # end
+  scope "/auth", InvestoreWeb do
+    pipe_through :browser
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+  end
+
 end

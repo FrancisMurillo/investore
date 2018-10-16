@@ -1,1 +1,1 @@
-export default () => "Kitten";
+export default () => "Kitteny";

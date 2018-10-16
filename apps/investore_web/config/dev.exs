@@ -6,7 +6,7 @@ config :investore_web, InvestoreWeb.Endpoint,
   code_reloader: true,
   check_origin: false,
   watchers: [
-    node: ["node_modules/brunch/bin/brunch", "watch", "--stdin", cd: Path.expand("../", __DIR__)]
+    npm: ["run", "watch", cd: Path.expand("../assets", __DIR__)]
   ]
 
 config :investore_web, InvestoreWeb.Endpoint,
@@ -19,6 +19,12 @@ config :investore_web, InvestoreWeb.Endpoint,
     ]
   ]
 
+config :ueberauth, Ueberauth.Strategy.Google.OAuth, ### In Secret
+  client_id: "",
+  client_secret: ""
+
 config :logger, :console, format: "[$level] $message\n"
 
 config :phoenix, :stacktrace_depth, 20
+
+import_config "dev.secret.exs"

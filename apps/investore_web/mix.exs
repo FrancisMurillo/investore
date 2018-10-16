@@ -29,6 +29,9 @@ defmodule InvestoreWeb.Mixfile do
 
   defp deps do
     [
+      {:ueberauth, "~> 0.4.0"},
+      {:ueberauth_identity, "~> 0.2.0"},
+      {:ueberauth_google, "~> 0.7.0"},
       {:phoenix, "~> 1.3.3"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_html, "~> 2.10"},

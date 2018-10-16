@@ -1,7 +1,5 @@
 defmodule InvestoreWeb.PageController do
-  use InvestoreWeb.Web, :controller
+  @moduledoc false
 
-  def index(conn, _params) do
-    render(conn, "index.html")
-  end
+  use InvestoreWeb.Web, :controller
 end

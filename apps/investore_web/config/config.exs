@@ -6,6 +6,13 @@ config :investore_web, InvestoreWeb.Endpoint,
   render_errors: [view: InvestoreWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: InvestoreWeb.PubSub, adapter: Phoenix.PubSub.PG2]
 
+config :ueberauth, Ueberauth,
+  base_path: "/auth",
+  providers: [
+    identity: {Ueberauth.Strategies.Identity, []},
+    google: {Ueberauth.Strategy.Google, []}
+  ]
+
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
