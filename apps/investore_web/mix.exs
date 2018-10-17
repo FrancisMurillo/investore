@@ -29,6 +29,10 @@ defmodule InvestoreWeb.Mixfile do
 
   defp deps do
     [
+      {:absinthe, "~> 1.4.0"},
+      {:absinthe_ecto, "~> 0.1.3"},
+      {:absinthe_plug, "~> 1.4.0"},
+      {:jason, "~> 1.1"},
       {:ueberauth, "~> 0.4.0"},
       {:ueberauth_identity, "~> 0.2.0"},
       {:ueberauth_google, "~> 0.7.0"},

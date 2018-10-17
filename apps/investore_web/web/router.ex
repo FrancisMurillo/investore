@@ -15,6 +15,22 @@ defmodule InvestoreWeb.Router do
     plug(:accepts, ["json"])
   end
 
+  pipeline :graphql do
+    plug Plug.Parsers,
+      parsers: [:urlencoded, :multipart, :json, Absinthe.Plug.Parser],
+      pass: ["*/*"],
+      json_decoder: Jason
+  end
+
+  scope "/api" do
+    pipe_through(:api)
+    pipe_through(:graphql)
+
+#    forward("/",  Absinthe.Plug, schema: GraphqlWeb.Schema)
+    forward("/graphiql", Absinthe.Plug.GraphiQL, schema: InvestoreWeb.Schema, interface: :simple, context: %{pubsub: InvestoreWeb.Endpoint})
+  end
+
+
   scope "/", InvestoreWeb do
     pipe_through(:browser)
 

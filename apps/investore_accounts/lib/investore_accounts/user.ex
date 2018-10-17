@@ -37,12 +37,12 @@ defmodule InvestoreAccounts.User do
       |> validate_email()
       |> put_change(:role, :guest)
 
-      def signin_changeset(params) do
-        {%{}, %{credentia: :string, password: :string}}
-        |> cast(params, [:username, :password])
-        |> validate_login()
-        |> validate_password()
-      end
+  def signin_changeset(params) do
+    {%{}, %{credentia: :string, password: :string}}
+    |> cast(params, [:username, :password])
+    |> validate_login()
+    |> validate_password()
+  end
 
   defp validate_username(changeset),
     do:
@@ -56,14 +56,13 @@ defmodule InvestoreAccounts.User do
       |> validate_format(:email, ~r/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)
       |> unique_constraint(:email)
 
-      defp validate_login(changeset),
-        do:
+  defp validate_login(changeset),
+    do:
       changeset
       |> validate_format(:credential, ~r/^[A-Z0-9_@.]+/i)
 
-      defp validate_password(changeset),
-        do:
+  defp validate_password(changeset),
+    do:
       changeset
-      |> validate_length(:password, min: 8, max: 50 )
-
+      |> validate_length(:password, min: 8, max: 50)
 end
