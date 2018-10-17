@@ -21,28 +21,28 @@ defmodule InvestoreAccounts.User do
 
   def changeset(entity = %Entity{}, params \\ %{}),
     do:
-  entity
-  |> cast(params, [:uuid, :username, :email, :image_url, :role])
-  |> validate_required([:email, :role])
-  |> validate_username()
-  |> validate_email()
+      entity
+      |> cast(params, [:uuid, :username, :email, :image_url, :role])
+      |> validate_required([:email, :role])
+      |> validate_username()
+      |> validate_email()
 
   def signin_guest_changeset(entity = %Entity{}, params \\ %{}),
     do:
-  entity
-  |> cast(params, [:email, :image_url])
-  |> validate_required([:email])
-  |> validate_email()
+      entity
+      |> cast(params, [:email, :image_url])
+      |> validate_required([:email])
+      |> validate_email()
 
   defp validate_username(changeset),
     do:
-  changeset
-  |> validate_format(:username, ~r/^[A-Z0-9_]+/i)
-  |> unique_constraint(:username)
+      changeset
+      |> validate_format(:username, ~r/^[A-Z0-9_]+/i)
+      |> unique_constraint(:username)
 
   defp validate_email(changeset),
     do:
-  changeset
-  |> validate_format(:email, ~r/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)
-  |> unique_constraint(:email)
+      changeset
+      |> validate_format(:email, ~r/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)
+      |> unique_constraint(:email)
 end
