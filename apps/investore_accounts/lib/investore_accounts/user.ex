@@ -33,6 +33,7 @@ defmodule InvestoreAccounts.User do
       |> cast(params, [:email, :image_url])
       |> validate_required([:email])
       |> validate_email()
+      |> put_change(:role, :guest)
 
   defp validate_username(changeset),
     do:

@@ -1,9 +1,6 @@
 defmodule InvestoreAccounts do
   @moduledoc false
 
-  def signin_guest() do
-  end
-
-  def signin_user() do
-  end
+  alias __MODULE__, as: Context
+  alias Context.{User}
 end

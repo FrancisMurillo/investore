@@ -1,4 +1,6 @@
 defmodule InvestoreProductsTest do
+  @moduledoc nil
+
   use ExUnit.Case
 
   import InvestoreProducts.TestFactory
