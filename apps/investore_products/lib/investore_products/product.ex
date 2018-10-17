@@ -24,6 +24,8 @@ defmodule InvestoreProducts.Product do
       |> validate_name()
       |> validate_description()
 
+  defdelegate add_changeset(entity, params), to: Entity, as: :changeset
+
   defp validate_name(changeset),
     do:
       changeset
@@ -34,6 +36,4 @@ defmodule InvestoreProducts.Product do
     do:
       changeset
       |> validate_length(:description, max: 250)
-
-  defdelegate add_changeset(entity, params), to: Entity, as: :changeset
 end

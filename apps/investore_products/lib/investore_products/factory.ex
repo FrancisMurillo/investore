@@ -3,15 +3,16 @@ defmodule InvestoreProducts.Factory do
 
   use ExMachina.Ecto, repo: InvestoreProducts.Repo
 
+  alias Ecto.UUID
   alias Faker
 
   alias InvestoreProducts.Product
 
   def product_factory,
     do: %Product{
-      uuid: Faker.UUID.v4(),
-      name: Faker.Food.dish(),
-      description: Faker.Food.description(),
-      image_url: Faker.Internet.image_url()
+      uuid: UUID.generate(),
+      name: sequence(:name, &"name-#{&1}"),
+      description: sequence(:description, &"description-#{&1}"),
+      image_url: "http://lorempixel.com/400/200"
     }
 end

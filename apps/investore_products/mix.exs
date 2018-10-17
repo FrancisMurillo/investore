@@ -38,7 +38,8 @@ defmodule InvestoreProducts.MixProject do
 
   defp aliases() do
     [
-      test: ["ecto.create --quiet", "ecto.migrate", "test --no-start"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test --no-start"],
+      seed: ["run priv/repo/seeds.exs --no-start"]
     ]
   end
 end

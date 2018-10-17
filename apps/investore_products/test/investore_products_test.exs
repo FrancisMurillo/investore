@@ -1,7 +1,7 @@
 defmodule InvestoreProductsTest do
   use ExUnit.Case
 
-  import InvestoreProducts.Factory
+  import InvestoreProducts.TestFactory
 
   alias Ecto
   alias Ecto.Changeset
@@ -16,10 +16,7 @@ defmodule InvestoreProductsTest do
   end
 
   def product_fixture(_context) do
-    Repo
-    |> Ecto.Adapters.SQL.query!("""
-    DELETE FROM #{Product.__schema__(:source)}
-    """)
+    Repo.delete_all(Product)
 
     :ok
   end

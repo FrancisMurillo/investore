@@ -33,6 +33,7 @@ defmodule InvestoreAccounts.MixProject do
       {:faker, "~> 0.11.0", only: :test},
       {:postgrex, ">= 0.0.0"},
       {:ecto, "~> 2.2.11"},
+      {:ecto_enum, "~> 1.0"},
       {:guardian, "~> 1.1.1"}
     ]
   end

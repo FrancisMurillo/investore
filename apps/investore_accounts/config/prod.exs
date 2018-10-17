@@ -1,3 +1,3 @@
 use Mix.Config
 
-config :investore_products, InvestoreAccounts.Repo, adapter: Ecto.Adapters.Postgres
+config :investore_accounts, InvestoreAccounts.Repo, adapter: Ecto.Adapters.Postgres
