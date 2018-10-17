@@ -13,6 +13,8 @@ defmodule InvestoreAccounts.User do
   @primary_key {:uuid, :binary_id, autogenerate: true}
   schema "users" do
     field(:username, :string, null: true)
+    field(:password, :string, virtual: true)
+    field(:password_hash, :string, null: true)
     field(:email, :string)
     field(:image_url, :string, null: true)
     field(:role, RoleEnum)
@@ -35,6 +37,13 @@ defmodule InvestoreAccounts.User do
       |> validate_email()
       |> put_change(:role, :guest)
 
+      def signin_changeset(params) do
+        {%{}, %{credentia: :string, password: :string}}
+        |> cast(params, [:username, :password])
+        |> validate_login()
+        |> validate_password()
+      end
+
   defp validate_username(changeset),
     do:
       changeset
@@ -46,4 +55,15 @@ defmodule InvestoreAccounts.User do
       changeset
       |> validate_format(:email, ~r/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)
       |> unique_constraint(:email)
+
+      defp validate_login(changeset),
+        do:
+      changeset
+      |> validate_format(:credential, ~r/^[A-Z0-9_@.]+/i)
+
+      defp validate_password(changeset),
+        do:
+      changeset
+      |> validate_length(:password, min: 8, max: 50 )
+
 end

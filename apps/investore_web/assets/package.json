@@ -64,8 +64,13 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
+    "babel-plugin-emotion": "^9.2.11",
+    "emotion": "^9.2.12",
+    "emotion-theming": "^9.2.9",
+    "ramda": "^0.25.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-emotion": "^9.2.12",
     "react-hot-loader": "^4.3.11",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
