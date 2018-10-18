@@ -1,5 +1,14 @@
 use Mix.Config
 
+config :investore_web, InvestoreWeb.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  database: "investore_dev",
+  username: "investore_user",
+  password: "investore1234",
+  hostname: "localhost",
+  port: "5432",
+  pool_size: 2
+
 config :investore_web, InvestoreWeb.Endpoint,
   http: [port: 41000],
   debug_errors: true,

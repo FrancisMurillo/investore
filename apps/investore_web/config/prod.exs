@@ -1,5 +1,7 @@
 use Mix.Config
 
+config :investore_web, InvestoreWeb.Repo, adapter: Ecto.Adapters.Postgres
+
 config :investore_web, InvestoreWeb.Endpoint,
   http: [:inet6, port: {:system, "PORT"}],
   url: [host: "example.com", port: 80],

@@ -1,5 +1,7 @@
 use Mix.Config
 
+config :investore_web, ecto_repos: [InvestoreWeb.Repo]
+
 config :investore_web, InvestoreWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "YZJUtBTowKRGJSDLEu6aGoxUw56t9Psm2iw3NfmK7ukTNKCDwK9yt51h1+z5S8J1",
