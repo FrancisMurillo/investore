@@ -6,7 +6,7 @@ defmodule InvestoreWeb.Repo.Migrations.CreateProductItems do
   def change do
     create table(:product_items, primary_key: false) do
       add(:uuid, :uuid, primary_key: true)
-      add(:name, :citext, null: false)
+      add(:name, :string, null: false)
       add(:image_url, :string, null: true)
       add(:description, :string, null: true, size: 250)
       timestamps()

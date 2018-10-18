@@ -9,7 +9,7 @@ defmodule InvestoreWeb.ProductItem do
   alias __MODULE__, as: Entity
 
   @primary_key {:uuid, :binary_id, autogenerate: true}
-  schema "product_item" do
+  schema "product_items" do
     field(:name, :string)
     field(:image_url, :string)
     field(:description, :string)
