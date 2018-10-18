@@ -29,6 +29,10 @@ defmodule InvestoreWeb.Mixfile do
 
   defp deps do
     [
+      {:ex_machina, "~> 2.2.0"},
+      {:faker, "~> 0.11.0", only: :test},
+      {:postgrex, ">= 0.0.0"},
+      {:ecto, "~> 2.2.11"},
       {:absinthe, "~> 1.4.0"},
       {:absinthe_ecto, "~> 0.1.3"},
       {:absinthe_plug, "~> 1.4.0"},
