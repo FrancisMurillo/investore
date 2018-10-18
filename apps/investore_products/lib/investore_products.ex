@@ -13,4 +13,8 @@ defmodule InvestoreProducts do
     |> Product.add_changeset(params)
     |> Repo.insert()
   end
+
+  def get_all_products() do
+    Repo.all(Product)
+  end
 end
