@@ -29,6 +29,7 @@ defmodule InvestoreWeb.Mixfile do
 
   defp deps do
     [
+      {:investore_product_services, in_umbrella: true},
       {:ex_machina, "~> 2.2.0"},
       {:faker, "~> 0.11.0", only: :test},
       {:postgrex, ">= 0.0.0"},

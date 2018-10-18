@@ -32,7 +32,8 @@ defmodule InvestoreProducts.MixProject do
       {:ex_machina, "~> 2.2.0"},
       {:faker, "~> 0.11.0", only: :test},
       {:postgrex, ">= 0.0.0"},
-      {:ecto, "~> 2.2.11"}
+      {:ecto, "~> 2.2.11"},
+      {:swarm, "~> 3.3.0"}
     ]
   end
 

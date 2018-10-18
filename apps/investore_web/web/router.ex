@@ -28,6 +28,8 @@ defmodule InvestoreWeb.Router do
 
 #    forward("/",  Absinthe.Plug, schema: GraphqlWeb.Schema)
     forward("/graphiql", Absinthe.Plug.GraphiQL, schema: InvestoreWeb.Schema, interface: :simple, context: %{pubsub: InvestoreWeb.Endpoint})
+    forward "/", Absinthe.Plug, schema: InvestoreWeb.Schema
+
   end
 
 

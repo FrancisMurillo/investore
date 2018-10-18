@@ -34,7 +34,8 @@ defmodule InvestoreAccounts.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:ecto, "~> 2.2.11"},
       {:ecto_enum, "~> 1.0"},
-      {:guardian, "~> 1.1.1"}
+      {:guardian, "~> 1.1.1"},
+      {:swarm, "~> 3.3.1"}
     ]
   end
 
