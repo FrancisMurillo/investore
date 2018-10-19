@@ -2,6 +2,7 @@ defmodule InvestoreWeb.Schema do
   @moduledoc nil
 
   use Absinthe.Schema
+  use Absinthe.Relay.Schema, :modern
 
   alias InvestoreWeb.{ProductResolver}
 
@@ -10,7 +11,6 @@ defmodule InvestoreWeb.Schema do
     field :name, non_null(:string)
     field :description, :string
     field :image_url, non_null(:string)
-
   end
 
   query do

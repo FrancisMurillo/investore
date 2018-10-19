@@ -10,11 +10,19 @@ defmodule InvestoreProductServices.Application do
   def start(_type, _args) do
     import Supervisor.Spec
 
+    {:ok, hostname} = :inet.gethostname()
+
     topologies = [
       nodes: [
         strategy: Cluster.Strategy.Epmd,
         config: [
-          hosts: [:"product-1@whimsical", :"product-2@whimsical", :"product-3@whimsical"]
+          hosts:
+            1
+            |> Range.new(3)
+            |> Enum.map(fn index ->
+              "product-#{index}@#{hostname}"
+              |> String.to_atom()
+            end)
         ],
         connect: {__MODULE__, :register_node, []},
         disconnect: {__MODULE__, :unregister_node, []}

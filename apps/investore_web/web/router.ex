@@ -23,13 +23,10 @@ defmodule InvestoreWeb.Router do
   end
 
   scope "/api" do
-    pipe_through(:api)
     pipe_through(:graphql)
 
-#    forward("/",  Absinthe.Plug, schema: GraphqlWeb.Schema)
     forward("/graphiql", Absinthe.Plug.GraphiQL, schema: InvestoreWeb.Schema, interface: :simple, context: %{pubsub: InvestoreWeb.Endpoint})
-    forward "/", Absinthe.Plug, schema: InvestoreWeb.Schema
-
+    forward "/graphql", Absinthe.Plug, schema: InvestoreWeb.Schema
   end
 
 

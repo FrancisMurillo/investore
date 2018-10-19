@@ -1,0 +1,15 @@
+interface Node {
+  id: ID!
+}
+
+type Product {
+  uuid: ID!
+  name: String
+  description: String
+  imageUrl: String
+}
+
+type Query {
+  products: [Product]
+  node(id: ID!): Node
+}

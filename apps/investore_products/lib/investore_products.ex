@@ -17,4 +17,8 @@ defmodule InvestoreProducts do
   def get_all_products() do
     Repo.all(Product)
   end
+
+  def resolve_products(_root, _args, _info) do
+    {:ok, Repo.all(Product)}
+  end
 end

@@ -6,14 +6,14 @@ defmodule InvestoreProductServices do
   alias InvestoreProductServices, as: Context
   alias Context.{Application}
 
-  def get_all_products() do
+  def resolve_products(root, args, info) do
     Application.next_available_node()
     |> case do
       nil ->
         {:error, :no_available_node}
 
       node ->
-        :rpc.call(node, Core, :get_all_products, [])
+        :rpc.call(node, Core, :resolve_products, [root, args, info])
     end
   end
 end

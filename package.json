@@ -19,7 +19,7 @@
       "enabled": true,
       "allow-untracked-files": true,
       "pre-commit": [
-          "mix format",
+        "mix format",
         "cd apps/investore_web/assets && npm run precommit"
       ],
       "post-commit": [],
