@@ -14,8 +14,9 @@ defmodule InvestoreWeb.Schema do
   end
 
   query do
-    field :products, non_null(list_of(non_null(:product))) do
-      resolve &ProductResolver.products/3
+    field :search_products, non_null(list_of(non_null(:product))) do
+      arg :search_query, non_null(:string)
+      resolve &ProductResolver.search_products/3
     end
   end
 end

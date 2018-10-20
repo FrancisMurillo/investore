@@ -17,28 +17,46 @@ import styled from "react-emotion";
 import FlexView from "react-flexview";
 import { QueryRenderer, createFragmentContainer, graphql } from "react-relay";
 import { Route } from "react-router-dom";
-import { compose, flattenProp, onlyUpdateForKeys, withProps } from "recompose";
+import {
+  compose,
+  flattenProp,
+  onlyUpdateForKeys,
+  pure,
+  withHandlers,
+  withProps,
+  withState
+} from "recompose";
 
 import environment from "../../Environment";
 import baseRoute from "./Route";
 
-const Header = () => (
+const Header = pure(() => (
   <AppBar color={"primary"} position={"fixed"}>
     <Typography variant={"h6"} color={"textPrimary"}>
       Investore
     </Typography>
   </AppBar>
-);
+));
 
-const Search = compose(withStyles({}))(({ classes }) => (
+const Search = compose(
+  withStyles({
+    textField: {
+      width: 200
+    }
+  }),
+  withHandlers({
+    handleChange: ({ onSearch }) => event => {
+      onSearch(event.target.value);
+    }
+  })
+)(({ classes, handleChange }) => (
   <FlexView>
     >
     <TextField
       id={"search"}
       label="Name"
-      // className={classes.textField}
-      // value={this.state.name}
-      // onChange={this.handleChange('name')}
+      className={classes.textField}
+      onChange={handleChange}
       margin={"normal"}
     />
   </FlexView>
@@ -51,7 +69,7 @@ const Product = compose(
     image: { height: 200 }
   })
 )(({ classes, name, description, imageUrl }) => (
-  <React.Fragment>
+  <Card className={classes.card}>
     <CardMedia
       image={imageUrl}
       title={name}
@@ -62,12 +80,12 @@ const Product = compose(
       {name}
     </Typography>
     <Typography variant={"body1"}>{description}</Typography>
-  </React.Fragment>
+  </Card>
 ));
 
 const query = graphql`
-  query landingQuery {
-    products {
+  query landingQuery($searchQuery: String!) {
+    searchProducts(searchQuery: $searchQuery) {
       name
       description
       imageUrl
@@ -75,57 +93,60 @@ const query = graphql`
   }
 `;
 
-const ScreenView = withProps({
-  flex: 1
-})(FlexView);
-
-const ProductList = withStyles({
-  gridList: {
-    flexWrap: "wrap",
-    transform: "translateZ(0)"
-  }
-})(({ classes, products }) => (
+const ProductList = compose(
+  onlyUpdateForKeys(["searchQuery"]),
+  withStyles({
+    gridList: {
+      flexWrap: "wrap",
+      transform: "translateZ(0)"
+    }
+  })
+)(({ classes, searchProducts: products, searchQuery }) => (
   <QueryRenderer
     environment={environment}
     query={query}
-    variables={{}}
+    variables={{ searchQuery }}
     render={({ error, props }) => {
       if (error) {
         return (
-          <ScreenView>
+          <FlexView column>
             <Typography>
               There was an error getting the catalog. Mind if you try again
               later?
             </Typography>
-          </ScreenView>
+          </FlexView>
         );
       } else if (!props) {
         return (
-          <ScreenView>
+          <FlexView column>
             <CircularProgress size={100} />
-          </ScreenView>
+          </FlexView>
         );
       } else {
         return (
-          <GridList className={classes.gridList} cellHeight={300}>
-            {props.products.map(product => (
-              <GridListTile>
-                <Product key={product.name} {...product} />
-              </GridListTile>
-            ))}
-          </GridList>
+          <FlexView column>
+            <GridList className={classes.gridList} cellHeight={300} cols={3}>
+              {props.searchProducts.map(product => (
+                <GridListTile key={product.name}>
+                  <Product key={product.name} {...product} />
+                </GridListTile>
+              ))}
+            </GridList>
+          </FlexView>
         );
       }
     }}
   />
 ));
 
-const Screen = _props => (
-  <FlexView column>
-    <Header />
-    <Search />
-    <ProductList />
-  </FlexView>
+const Screen = withState("searchQuery", "setSearchQuery", "")(
+  ({ searchQuery, setSearchQuery }) => (
+    <FlexView column>
+      <Header />
+      <Search onSearch={setSearchQuery} />
+      <ProductList searchQuery={searchQuery} />
+    </FlexView>
+  )
 );
 
 export const route = {

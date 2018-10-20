@@ -3,13 +3,10 @@ defmodule InvestoreWeb.ProductResolver do
 
   alias InvestoreProductServices
 
-  alias InvestoreWeb.{ProductItem, Repo}
-
-  def products(root, args, info) do
-    case InvestoreProductServices.resolve_products(root, args, info) do
+  def search_products(root, args, info) do
+    case InvestoreProductServices.resolve_search_products(root, args, info) do
       {:ok, values} ->
         values
-        |> Enum.map(&Map.from_struct/1)
         |> (&{:ok, &1}).()
       error -> error
     end

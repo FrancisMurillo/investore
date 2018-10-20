@@ -1,6 +1,7 @@
 defmodule InvestoreProducts do
   @moduledoc nil
 
+  import Ecto.Query
   alias Ecto.UUID
 
   alias __MODULE__, as: Context
@@ -18,7 +19,21 @@ defmodule InvestoreProducts do
     Repo.all(Product)
   end
 
-  def resolve_products(_root, _args, _info) do
-    {:ok, Repo.all(Product)}
+  def resolve_search_products(_root, %{search_query: query}, _info) do
+    Product
+    |> search_query(query)
+    |> Repo.all()
+    |> (&{:ok, &1}).()
   end
+
+  defp search_query(query, search_term) do
+    if search_term != "" do
+      from(p in query,
+        where: fragment("? % ?", p.name, ^search_term),
+        order_by: fragment("similarity(?, ?) DESC", p.name, ^search_term))
+    else
+      query
+    end
+  end
+
 end

@@ -10,6 +10,6 @@ type Product {
 }
 
 type Query {
-  products: [Product]
+  searchProducts(searchQuery: String): [Product]
   node(id: ID!): Node
 }
