@@ -102,29 +102,25 @@ const ProductList = compose(
     }
   })
 )(({ classes, searchProducts: products, searchQuery }) => (
-  <QueryRenderer
-    environment={environment}
-    query={query}
-    variables={{ searchQuery }}
-    render={({ error, props }) => {
-      if (error) {
-        return (
-          <FlexView column>
+  <FlexView column>
+    <QueryRenderer
+      environment={environment}
+      query={query}
+      variables={{ searchQuery }}
+      render={({ error, props }) => {
+        if (error) {
+          return (
             <Typography>
               There was an error getting the catalog. Mind if you try again
               later?
             </Typography>
-          </FlexView>
-        );
-      } else if (!props) {
-        return (
-          <FlexView column>
-            <CircularProgress size={100} />
-          </FlexView>
-        );
-      } else {
-        return (
-          <FlexView column>
+          );
+        } else if (!props) {
+          return <CircularProgress size={100} />;
+        } else if (!props.searchProducts.length) {
+          return <Typography>No products found</Typography>;
+        } else {
+          return (
             <GridList className={classes.gridList} cellHeight={300} cols={3}>
               {props.searchProducts.map(product => (
                 <GridListTile key={product.name}>
@@ -132,11 +128,11 @@ const ProductList = compose(
                 </GridListTile>
               ))}
             </GridList>
-          </FlexView>
-        );
-      }
-    }}
-  />
+          );
+        }
+      }}
+    />
+  </FlexView>
 ));
 
 const Screen = withState("searchQuery", "setSearchQuery", "")(

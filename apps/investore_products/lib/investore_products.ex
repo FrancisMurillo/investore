@@ -29,11 +29,11 @@ defmodule InvestoreProducts do
   defp search_query(query, search_term) do
     if search_term != "" do
       from(p in query,
-        where: fragment("? % ?", p.name, ^search_term),
-        order_by: fragment("similarity(?, ?) DESC", p.name, ^search_term))
+        where: fragment("? % ?", p.name, ^search_term) or fragment("? % ?", p.description, ^search_term),
+        order_by: [desc: fragment("similarity(?, ?)", p.name, ^search_term), desc: fragment("similarity(?, ?)", p.description, ^search_term)]
+      )
     else
       query
     end
   end
-
 end
