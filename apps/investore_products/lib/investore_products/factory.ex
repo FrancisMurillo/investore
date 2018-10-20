@@ -13,6 +13,6 @@ defmodule InvestoreProducts.Factory do
       uuid: UUID.generate(),
       name: sequence(:name, &"name-#{&1}"),
       description: sequence(:description, &"description-#{&1}"),
-      image_url: "http://lorempixel.com/400/200"
+      image_url: sequence(:image_url, &"https://picsum.photos/200/200/?random&_id=#{&1}")
     }
 end

@@ -68,6 +68,8 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
+    "@material-ui/core": "^3.2.2",
+    "@material-ui/icons": "^3.0.1",
     "babel-plugin-emotion": "^9.2.11",
     "emotion": "^9.2.12",
     "emotion-theming": "^9.2.9",
@@ -75,13 +77,14 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-emotion": "^9.2.12",
+    "react-flexview": "^4.0.1",
     "react-hot-loader": "^4.3.11",
     "react-redux": "^5.0.7",
     "react-relay": "^1.6.2",
     "react-router-dom": "^4.3.1",
     "recompose": "^0.30.0",
-    "recompose-relay": "^0.3.1",
-    "relay": "^0.8.0-1"
+    "relay": "^0.8.0-1",
+    "typeface-roboto": "^0.0.54"
   },
   "release": {
     "analyzeCommits": "simple-commit-message"

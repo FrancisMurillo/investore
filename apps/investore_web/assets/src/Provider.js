@@ -1,6 +1,10 @@
+import { createMuiTheme } from "@material-ui/core/styles";
+import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import { ThemeProvider } from "emotion-theming";
 import React from "react";
 import { BrowserRouter as RoutingProvider } from "react-router-dom";
+
+import environment from "./Environment";
 
 const theme = {
   primary: {
@@ -49,8 +53,24 @@ const theme = {
   error: "#f44336"
 };
 
+const materialTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#439b18"
+    },
+    secondary: {
+      main: "#0079ff"
+    }
+  },
+  typography: {
+    useNextVariants: true
+  }
+});
+
 export default ({ children }) => (
-  <ThemeProvider theme={theme}>
-    <RoutingProvider>{React.Children.only(children)}</RoutingProvider>
-  </ThemeProvider>
+  <MuiThemeProvider theme={materialTheme}>
+    <ThemeProvider theme={materialTheme}>
+      <RoutingProvider>{React.Children.only(children)}</RoutingProvider>
+    </ThemeProvider>
+  </MuiThemeProvider>
 );

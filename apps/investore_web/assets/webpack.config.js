@@ -13,11 +13,6 @@ module.exports = {
     filename: "bundle.js"
   },
   resolve: {
-    alias: {
-      ["@components"]: path.resolve(__dirname, "src/components/"),
-      ["@styles"]: path.resolve(__dirname, "src/styles/"),
-      ["@src"]: path.resolve(__dirname, "src/")
-    },
     extensions: [".js", ".jsx", ".css", ".scss"]
   },
   plugins: [
@@ -50,6 +45,10 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+        loader: "file-loader"
       },
       {
         test: /\.s?css$/,
