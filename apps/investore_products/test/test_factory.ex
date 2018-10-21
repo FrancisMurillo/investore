@@ -10,8 +10,8 @@ defmodule InvestoreProducts.TestFactory do
   def product_factory,
     do: %Product{
       uuid: Faker.UUID.v4(),
-      name: Faker.Food.dish(),
-      description: Faker.Food.description(),
+      name: Faker.Superhero.name(),
+      description: Faker.Superhero.power(),
       image_url: Faker.Internet.image_url()
     }
 end

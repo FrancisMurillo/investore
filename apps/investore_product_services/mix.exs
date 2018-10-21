@@ -11,6 +11,7 @@ defmodule InvestoreProductServices.MixProject do
       lockfile: "../../mix.lock",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
+      aliases: aliases(),
       deps: deps()
     ]
   end
@@ -24,10 +25,16 @@ defmodule InvestoreProductServices.MixProject do
 
   defp deps do
     [
-      {:investore_products, in_umbrella: true, runtime: false},
+      {:investore_products, in_umbrella: true, runtime: false, only: [:test]},
       {:local_cluster, "~> 1.0", only: [:test]},
       {:libcluster, "~> 3.0.3"},
       {:swarm, "~> 3.3.1"}
+    ]
+  end
+
+  defp aliases() do
+    [
+      test: ["test --no-start"]
     ]
   end
 end

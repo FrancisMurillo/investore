@@ -1,8 +1,6 @@
 defmodule InvestoreProductServices do
   @moduledoc nil
 
-  alias InvestoreProducts, as: Core
-
   alias InvestoreProductServices, as: Context
   alias Context.{Application}
 
@@ -13,7 +11,7 @@ defmodule InvestoreProductServices do
         {:error, :no_available_node}
 
       node ->
-        :rpc.call(node, Core, :resolve_search_products, [root, args, info])
+        :rpc.call(node, InvestoreProducts, :resolve_search_products, [root, args, info])
     end
   end
 end
