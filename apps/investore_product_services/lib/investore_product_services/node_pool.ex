@@ -56,4 +56,12 @@ defmodule InvestoreProductServices.NodePool do
       end
     end
   end
+
+  def refresh_nodes(pid),
+    do:
+      :connected
+      |> Node.list()
+      |> Enum.each(fn node ->
+        register_node(pid, node)
+      end)
 end

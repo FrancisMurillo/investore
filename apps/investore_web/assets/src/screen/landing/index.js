@@ -45,19 +45,22 @@ const Search = compose(
     }
   }),
   withHandlers({
-    handleChange: ({ onSearch }) => event => {
-      onSearch(event.target.value);
+    handleSubmit: ({ onSearch }) => event => {
+      if (event.key == "Enter") {
+        onSearch(event.target.value);
+      }
     }
   })
-)(({ classes, handleChange }) => (
+)(({ classes, handleChange, handleSubmit }) => (
   <FlexView>
     >
     <TextField
       id={"search"}
       label="Name"
       className={classes.textField}
-      onChange={handleChange}
+      onKeyPress={handleSubmit}
       margin={"normal"}
+      placeholder={"Enter a product query"}
     />
   </FlexView>
 ));

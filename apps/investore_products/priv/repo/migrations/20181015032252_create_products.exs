@@ -13,6 +13,10 @@ defmodule InvestoreProducts.Repo.Migrations.CreateProducts do
     end
 
     create(unique_index(:products, [:name]))
-    execute "CREATE INDEX IF NOT EXISTS products_search_trgm_index ON products USING gin (name gin_trgm_ops, description gin_trgm_ops)", "DROP INDEX IF EXISTS products_name_trgm_index;"
+
+    execute(
+      "CREATE INDEX IF NOT EXISTS products_search_trgm_index ON products USING gin (name gin_trgm_ops, description gin_trgm_ops)",
+      "DROP INDEX IF EXISTS products_name_trgm_index;"
+    )
   end
 end

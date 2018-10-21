@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :investore_web, InvestoreAccounts.Repo,
+config :investore_web, InvestoreWeb.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "investore_test",
   username: "investore_user",

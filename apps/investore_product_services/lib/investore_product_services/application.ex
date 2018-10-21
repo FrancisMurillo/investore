@@ -65,4 +65,10 @@ defmodule InvestoreProductServices.Application do
       {NodePool, Node.self()}
       |> :global.whereis_name()
       |> NodePool.next_available_node()
+
+      def refresh_nodes(),
+        do:       {NodePool, Node.self()}
+      |> :global.whereis_name()
+      |> NodePool.refresh_nodes()
+
 end

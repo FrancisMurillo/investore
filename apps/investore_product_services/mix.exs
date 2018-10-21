@@ -25,6 +25,7 @@ defmodule InvestoreProductServices.MixProject do
   defp deps do
     [
       {:investore_products, in_umbrella: true, runtime: false},
+      {:local_cluster, "~> 1.0", only: [:test]},
       {:libcluster, "~> 3.0.3"},
       {:swarm, "~> 3.3.1"}
     ]
